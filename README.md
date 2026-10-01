@@ -1,4 +1,4 @@
-# Dotfiles
+# dotfiles
 
 Personal configuration for two machines: a Linux laptop running Hyprland, and a MacBook Pro.
 
