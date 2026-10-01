@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Paneru Cheat Sheet</title>
+<style>
+  :root {
+    --bg: #f6f7f5; --card: #ffffff; --text: #1d1f1c; --muted: #6b6f69;
+    --line: #e3e6e1; --key-bg: #eef1ec; --key-line: #cfd5cb; --accent: #4f8a45;
+    --mod-bg: #e4f2df; --mod-line: #a9cfa0;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #141513; --card: #1d1f1c; --text: #e9ece6; --muted: #9aa095;
+      --line: #2c2f2a; --key-bg: #262924; --key-line: #3a3e37; --accent: #b3e1a7;
+      --mod-bg: #2a3527; --mod-line: #4d6446;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 14px/1.45 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
+  }
+  main { max-width: 1160px; margin: 0 auto; padding: 32px 16px 48px; }
+  header { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 18px; }
+  h1 { font-size: 26px; margin: 0; letter-spacing: -0.01em; }
+  h1 span { color: var(--accent); }
+  .hint { color: var(--muted); font-size: 13px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 16px; }
+  section { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; }
+  h2 { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin: 0 0 10px; }
+  table { width: 100%; border-collapse: collapse; }
+  td { padding: 7px 0; border-top: 1px solid var(--line); vertical-align: middle; }
+  tr:first-child td { border-top: 0; }
+  td.k { white-space: nowrap; padding-right: 14px; width: 1%; }
+  td.alt { white-space: nowrap; text-align: right; color: var(--muted); font-size: 12px; padding-left: 10px; width: 1%; }
+  kbd {
+    display: inline-block; min-width: 24px; padding: 2px 6px; margin-right: 2px; text-align: center;
+    font: 600 12px/1.4 "SF Mono", ui-monospace, Menlo, monospace;
+    background: var(--key-bg); border: 1px solid var(--key-line); border-bottom-width: 2px; border-radius: 6px;
+  }
+  kbd.mod { background: var(--mod-bg); border-color: var(--mod-line); }
+  td.alt kbd { font-size: 10.5px; min-width: 18px; padding: 1px 4px; font-weight: 500; }
+  .or { color: var(--muted); font-size: 12px; margin: 0 4px; }
+  .note { color: var(--muted); font-size: 12.5px; margin: 10px 0 0; }
+  .legend { display: flex; gap: 14px; flex-wrap: wrap; color: var(--muted); font-size: 13px; margin-bottom: 18px; }
+  footer { margin-top: 24px; color: var(--muted); font-size: 12.5px; }
+  code { font: 12px "SF Mono", ui-monospace, Menlo, monospace; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1><span>Paneru</span> cheat sheet</h1>
+    <div class="hint"><kbd class="mod">fn</kbd> is Mod (niri-style) &nbsp;·&nbsp; grey column = backup using the real left <kbd>⌃</kbd> + <kbd>⌥</kbd></div>
+  </header>
+
+  <div class="legend">
+    <span><kbd class="mod">fn</kbd> Globe</span><span><kbd>⌃</kbd> Control</span><span><kbd>⌥</kbd> Option</span>
+    <span><kbd>⌘</kbd> Command</span><span><kbd>⇧</kbd> Shift</span>
+  </div>
+
+  <div class="grid">
+    <section>
+      <h2>Focus</h2>
+      <table>
+        <tr><td class="k"><kbd class="mod">fn</kbd><kbd>←</kbd><span class="or">/</span><kbd>→</kbd></td><td>Focus window left / right</td><td class="alt"><kbd>⌃</kbd><kbd>⌥</kbd><kbd>,</kbd><kbd>.</kbd></td></tr>
+        <tr><td class="k"><kbd class="mod">fn</kbd><kbd>↑</kbd><span class="or">/</span><kbd>↓</kbd></td><td>Up / down in stack, then switch row</td><td class="alt"><kbd>⌃</kbd><kbd>⌥</kbd><kbd>↑</kbd><kbd>↓</kbd></td></tr>
+        <tr><td class="k"><kbd class="mod">fn</kbd><kbd>⌥</kbd><kbd>←</kbd><span class="or">/</span><kbd>→</kbd></td><td>Jump to first / last window</td><td class="alt"></td></tr>
+      </table>
+    </section>
+
+    <section>
+      <h2>Rows (virtual workspaces)</h2>
+      <table>
+        <tr><td class="k"><kbd class="mod">fn</kbd><kbd>1</kbd><kbd>2</kbd><kbd>3</kbd></td><td>Go to row 1 / 2 / 3</td><td class="alt"><kbd>⌃</kbd><kbd>⌥</kbd><kbd>1</kbd>–<kbd>3</kbd></td></tr>
+        <tr><td class="k"><kbd class="mod">fn</kbd><kbd>⇧</kbd><kbd>1</kbd><kbd>2</kbd><kbd>3</kbd></td><td>Move window to row 1 / 2 / 3</td><td class="alt"><kbd>⌃</kbd><kbd>⌥</kbd><kbd>⇧</kbd><kbd>1</kbd>–<kbd>3</kbd></td></tr>
+        <tr><td class="k"><kbd class="mod">fn</kbd><kbd>⇧</kbd><kbd>↑</kbd><span class="or">/</span><kbd>↓</kbd></td><td>Move window to row above / below</td><td class="alt"><kbd>⌃</kbd><kbd>⌥</kbd><kbd>⇧</kbd><kbd>↑</kbd><kbd>↓</kbd></td></tr>
+      </table>
+      <p class="note">Rows are created past the last one and removed when empty.</p>
+    </section>
+
+    <section>
+      <h2>Move</h2>
+      <table>
+        <tr><td class="k"><kbd class="mod">fn</kbd><kbd>⇧</kbd><kbd>←</kbd><span class="or">/</span><kbd>→</kbd></td><td>Move window left / right</td><td class="alt"><kbd>⌘</kbd><kbd>⌃</kbd><kbd>⌥</kbd><kbd>,</kbd><kbd>.</kbd></td></tr>
+        <tr><td class="k"><kbd class="mod">fn</kbd><kbd>⌥</kbd><kbd>↑</kbd><span class="or">/</span><kbd>↓</kbd></td><td>Move up / down within a stack</td><td class="alt"><kbd>⌘</kbd><kbd>⌃</kbd><kbd>⌥</kbd><kbd>↑</kbd><kbd>↓</kbd></td></tr>
+        <tr><td class="k"><kbd class="mod">fn</kbd><kbd>⌥</kbd><kbd>⇧</kbd><kbd>←</kbd><span class="or">/</span><kbd>→</kbd></td><td>Move window to first / last</td><td class="alt"></td></tr>
+      </table>
+    </section>
+
+    <section>
+      <h2>Size</h2>
+      <table>
+        <tr><td class="k"><kbd class="mod">fn</kbd><kbd>⌘</kbd><kbd>←</kbd><span class="or">/</span><kbd>→</kbd></td><td>Narrower / wider (50–100%)</td><td class="alt"><kbd>⌃</kbd><kbd>⌥</kbd><kbd>[</kbd><kbd>]</kbd></td></tr>
+        <tr><td class="k"><kbd class="mod">fn</kbd><kbd>-</kbd><span class="or">/</span><kbd>=</kbd></td><td>Narrower / wider (niri style)</td><td class="alt"></td></tr>
+        <tr><td class="k"><kbd class="mod">fn</kbd><kbd>⌘</kbd><kbd>↑</kbd><span class="or">/</span><kbd>↓</kbd></td><td>Taller / shorter (in a stack)</td><td class="alt"></td></tr>
+        <tr><td class="k"><kbd class="mod">fn</kbd><kbd>F</kbd><span class="or">or</span><kbd class="mod">fn</kbd><kbd>⇧</kbd><kbd>F</kbd></td><td>Toggle full width</td><td class="alt"><kbd>⌃</kbd><kbd>⌥</kbd><kbd>'</kbd></td></tr>
+        <tr><td class="k"><kbd class="mod">fn</kbd><kbd>C</kbd></td><td>Center window</td><td class="alt"><kbd>⌃</kbd><kbd>⌥</kbd><kbd>C</kbd></td></tr>
+        <tr><td class="k"><kbd class="mod">fn</kbd><kbd>B</kbd></td><td>Balance all columns to this width</td><td class="alt"><kbd>⌃</kbd><kbd>⌥</kbd><kbd>B</kbd></td></tr>
+      </table>
+      <p class="note">50/50 split: narrow one window to 50%, then <kbd class="mod">fn</kbd><kbd>B</kbd>.</p>
+    </section>
+
+    <section>
+      <h2>Stack &amp; float</h2>
+      <table>
+        <tr><td class="k"><kbd class="mod">fn</kbd><kbd>,</kbd></td><td>Stack into column on the left</td><td class="alt"><kbd>⌃</kbd><kbd>⌥</kbd><kbd>S</kbd></td></tr>
+        <tr><td class="k"><kbd class="mod">fn</kbd><kbd>.</kbd></td><td>Pull out of the stack</td><td class="alt"><kbd>⌃</kbd><kbd>⌥</kbd><kbd>U</kbd></td></tr>
+        <tr><td class="k"><kbd class="mod">fn</kbd><kbd>E</kbd></td><td>Equal heights in the stack</td><td class="alt"><kbd>⌃</kbd><kbd>⌥</kbd><kbd>E</kbd></td></tr>
+        <tr><td class="k"><kbd class="mod">fn</kbd><kbd>Space</kbd></td><td>Toggle tiled / floating</td><td class="alt"><kbd>⌃</kbd><kbd>⌥</kbd><kbd>;</kbd></td></tr>
+        <tr><td class="k"><kbd>⌃</kbd><kbd>⌥</kbd><kbd>Q</kbd></td><td>Quit Paneru</td><td class="alt"></td></tr>
+      </table>
+      <p class="note">Always floating: Calculator, QuickTime, AppCleaner, KeyboardCleanTool.</p>
+    </section>
+
+    <section>
+      <h2>Trackpad &amp; mouse</h2>
+      <table>
+        <tr><td class="k">3-finger ← →</td><td>Slide through windows</td><td class="alt"></td></tr>
+        <tr><td class="k">3-finger ↑ ↓</td><td>Switch row</td><td class="alt"></td></tr>
+        <tr><td class="k"><kbd>⌥</kbd> + scroll</td><td>Slide windows</td><td class="alt"></td></tr>
+        <tr><td class="k"><kbd>⌥</kbd><kbd>⌘</kbd> + scroll</td><td>Switch row</td><td class="alt"></td></tr>
+      </table>
+      <p class="note">Keep macOS Mission Control / full-screen swipes on 4 fingers.</p>
+    </section>
+
+  </div>
+
+  <footer>
+    Config: <code>~/.config/paneru/paneru.toml</code> &nbsp;·&nbsp;
+    Restart: <code>paneru restart</code> &nbsp;·&nbsp; Reopen this: <code>paneru-help</code> &nbsp;·&nbsp;
+    Close a window: <kbd>⌘</kbd><kbd>W</kbd>
+    <br><br>
+    <kbd class="mod">fn</kbd> works because System Settings → Keyboard Shortcuts → Modifier Keys maps Globe to Control (seen by Paneru as right Control).
+    Changing that setting breaks every <kbd class="mod">fn</kbd> shortcut.
+  </footer>
+</main>
+</body>
+</html>

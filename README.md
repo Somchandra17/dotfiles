@@ -1,97 +1,40 @@
-# Hyprland Dotfiles
+# Dotfiles
 
-My personal Hyprland configuration.
+Personal configuration for two machines: a Linux laptop running Hyprland, and a MacBook Pro.
 
-**System:** Acer Swift SF314-510G  
-**OS:** EndeavourOS (Linux 6.12.74-1-lts)  
-**WM:** Hyprland 0.54.0
-
-## Included
-- **Hyprland**: Window manager config, keybinds, autostart
-- **Quickshell**: Modern shell widgets and overlays (illogical-impulse config)
-- **Kitty**: Terminal emulator
-- **Fish**: Shell configuration
-- **Zsh/Bash**: Shell configs with p10k theme
-- **Btop**: System monitor
-- **Brightnessctl**: Brightness control
-- **Playerctl**: Media control
-- **Wpctl**: Audio/volume control
-- **Hyprpicker**: Color picker
-- **Grim/Slurp**: Screenshot tools
-- **Tesseract**: OCR for text recognition
-- **Git**: Git configuration
-- **Scripts**: Custom utility scripts
-- **Fonts**: Custom fonts collection
-- **Icons**: Icon themes
-- **Wallpapers**: Wallpaper collection
-
-## Setup on New System
-
-### 1. Install Base Packages
-```bash
-# Update system
-sudo apt update && sudo apt upgrade -y
-
-# Install essential packages
-cat lists/apt-manual.txt | xargs sudo apt install -y
-
-# Install Flatpak packages
-cat lists/flatpak.txt | xargs flatpak install -y
-
-# Install Snap packages
-cat lists/snap.txt | xargs sudo snap install
+```
+.
+├── hyprland/            Linux (Hyprland) desktop
+│   ├── home/            mirror of $HOME: .config, .local, fonts, icons, shell rc files
+│   ├── packages/        apt / flatpak / snap package lists
+│   └── README.md
+├── macos/
+│   ├── terminal/        Ghostty, Kitty, ZSH, Starship, Atuin, Ranger, Fastfetch
+│   │   ├── home/        mirror of $HOME
+│   │   └── terminal-cheatsheet.md
+│   ├── paneru/          Paneru tiling WM, borders, keybinding cheat sheet
+│   │   ├── home/        mirror of $HOME
+│   │   └── install.sh
+│   └── README.md
+├── AGENTS.md            deployment manual for AI agents (CLAUDE.md points here)
+└── README.md
 ```
 
-### 2. Install Fonts and Icons
-```bash
-# Copy fonts
-cp -r .fonts/* ~/.local/share/fonts/
-fc-cache -fv
+## Where to start
 
-# Copy icons
-cp -r .icons/* ~/.local/share/icons/
-```
+| I want to... | Read |
+|---|---|
+| Set up the Hyprland desktop on Linux | [`hyprland/README.md`](hyprland/README.md) |
+| Set up the macOS terminal | [`macos/terminal/README.md`](macos/terminal/README.md) |
+| Set up the Paneru window manager on macOS | [`macos/paneru/README.md`](macos/paneru/README.md) |
+| Let an AI agent deploy any of these | [`AGENTS.md`](AGENTS.md) |
 
-### 3. Restore Configurations
-```bash
-# Backup existing configs (optional)
-mkdir -p ~/dotfiles-backup
-cp -r ~/.config ~/dotfiles-backup/ 2>/dev/null || true
+## Conventions
 
-# Copy configurations
-cp -r .config/* ~/.config/
-cp -r .local/* ~/.local/
-cp .zshrc .bashrc .profile .p10k.zsh .gitconfig ~/
+- Every `home/` folder mirrors `$HOME`: `home/.config/kitty/kitty.conf` goes to `~/.config/kitty/kitty.conf`.
+- Back up before copying. Never overwrite a user's existing file without keeping a copy.
+- The parts are independent. Installing one never requires another.
 
-# Copy wallpapers
-mkdir -p ~/Pictures
-cp -r Pictures/* ~/Pictures/
+## Cloning on macOS
 
-# Set permissions
-chmod +x ~/.local/bin/*
-chmod +x ~/.config/hypr/scripts/*
-```
-
-### 4. Enable Services
-```bash
-# Enable user services
-systemctl --user enable kanshi
-systemctl --user start kanshi
-
-# Set default shell (if using zsh)
-chsh -s $(which zsh)
-```
-
-### 5. First Login
-1. Log out and select "Hyprland" session
-2. First boot will run initial setup script
-3. Configure displays using Super+Shift+D
-4. Enjoy your Hyprland setup!
-
-## Key Components Added
-- **SwayNC**: Modern notification center
-- **Cava**: Audio visualizer with shaders
-- **Wallust**: Dynamic color theming from wallpapers
-- **AGS**: Advanced widget system
-- **Autostart**: Session management
-- **System configs**: MIME types, user directories
+`hyprland/home/.icons/` contains about 1,300 paths that differ only in letter case (for example `KNetAttach.svg` and `knetattach.svg`). macOS filesystems are case-insensitive, so a clone on a Mac shows a couple of hundred icon files as modified or typechanged even though nobody touched them. **Never commit those changes.** Deploy the Hyprland part from a Linux clone, and on a Mac stage only the paths you actually changed (`git add <path>`, never `git add -A`).

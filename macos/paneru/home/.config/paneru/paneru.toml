@@ -1,0 +1,116 @@
+[options]
+focus_follows_mouse = false
+mouse_follows_focus = false
+animation_speed = 22
+preset_column_widths = [0.50, 0.60, 0.70, 0.80, 0.90, 1.00]
+window_resize_cycle = false
+auto_center = false
+create_virtual_workspace_automatically = true
+reap_empty_workspaces = true
+virtual_workspace_animations = true
+
+[padding]
+top = 12
+bottom = 12
+
+[bindings]
+# Mod = fn key. macOS Modifier Keys maps Globe -> Control, which the built-in
+# keyboard reports as RIGHT control ("rctrl"); MacBooks have no physical rctrl.
+# Backups use "lctrl" (not "ctrl") so they never overlap the rctrl binds.
+# fn+ctrl can't be told apart from fn alone (both rctrl bits), so no fn+ctrl binds.
+
+# Focus
+window_focus_west = ["lctrl + alt - ,", "rctrl - leftarrow"]
+window_focus_east = ["lctrl + alt - .", "rctrl - rightarrow"]
+window_virtualfocus_north = ["lctrl + alt - uparrow", "rctrl - uparrow"]
+window_virtualfocus_south = ["lctrl + alt - downarrow", "rctrl - downarrow"]
+window_focus_first = "rctrl + alt - leftarrow"
+window_focus_last = "rctrl + alt - rightarrow"
+
+# Rows (virtual workspaces)
+window_virtualnum_1 = ["lctrl + alt - 1", "rctrl - 1"]
+window_virtualnum_2 = ["lctrl + alt - 2", "rctrl - 2"]
+window_virtualnum_3 = ["lctrl + alt - 3", "rctrl - 3"]
+window_virtualmovenum_1 = ["lctrl + alt + shift - 1", "rctrl + shift - 1"]
+window_virtualmovenum_2 = ["lctrl + alt + shift - 2", "rctrl + shift - 2"]
+window_virtualmovenum_3 = ["lctrl + alt + shift - 3", "rctrl + shift - 3"]
+
+# Move
+window_swap_west = ["cmd + lctrl + alt - ,", "rctrl + shift - leftarrow"]
+window_swap_east = ["cmd + lctrl + alt - .", "rctrl + shift - rightarrow"]
+window_virtualmove_north = ["lctrl + alt + shift - uparrow", "rctrl + shift - uparrow"]
+window_virtualmove_south = ["lctrl + alt + shift - downarrow", "rctrl + shift - downarrow"]
+window_swap_north = ["cmd + lctrl + alt - uparrow", "rctrl + alt - uparrow"]
+window_swap_south = ["cmd + lctrl + alt - downarrow", "rctrl + alt - downarrow"]
+window_swap_first = "rctrl + alt + shift - leftarrow"
+window_swap_last = "rctrl + alt + shift - rightarrow"
+
+# Size
+window_resize = ["lctrl + alt - ]", "rctrl + cmd - rightarrow", "rctrl - equal"]
+window_shrink = ["lctrl + alt - [", "rctrl + cmd - leftarrow", "rctrl - minus"]
+window_vertical_resize = "rctrl + cmd - uparrow"
+window_vertical_shrink = "rctrl + cmd - downarrow"
+window_fullwidth = ["lctrl + alt - '", "rctrl + shift - f", "rctrl - f"]
+window_center = ["lctrl + alt - c", "rctrl - c"]
+window_balance = ["lctrl + alt - b", "rctrl - b"]
+
+# Stack / float
+window_stack = ["lctrl + alt - s", "rctrl - ,"]
+window_unstack = ["lctrl + alt - u", "rctrl - ."]
+window_equalize = ["lctrl + alt - e", "rctrl - e"]
+window_manage = ["lctrl + alt - ;", "rctrl - space"]
+
+quit = "lctrl + alt - q"
+
+[swipe]
+deceleration = 2.0
+sensitivity = 0.2
+continuous = true
+
+[swipe.scroll]
+modifier = "alt"
+vertical_modifier = "cmd"
+
+[swipe.gesture]
+fingers_count = 3
+direction = "Natural"
+vertical = true
+
+[decorations.inactive.dim]
+opacity_night = -0.08
+
+[windows.appcleaner]
+title = ".*"
+bundle_id = "net.freemacsoft.AppCleaner"
+floating = true
+
+[windows.calculator]
+title = ".*"
+bundle_id = "com.apple.calculator"
+floating = true
+
+[windows.cleantool]
+title = ".*"
+bundle_id = "com.hegenberg.KeyboardCleanTool"
+floating = true
+
+[windows.quicktime]
+title = ".*"
+bundle_id = "com.apple.QuickTimePlayerX"
+floating = true
+
+[windows.finder-info]
+title = ".* Bilgisi"
+bundle_id = "com.apple.finder"
+floating = true
+
+[windows.music]
+title = ".*"
+bundle_id = "com.apple.Music"
+width = 0.75
+
+[windows.all]
+title = ".*"
+horizontal_padding = 6
+vertical_padding = 0
+width = 0.5
