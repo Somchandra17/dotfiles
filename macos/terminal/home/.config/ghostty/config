@@ -1,0 +1,50 @@
+# ╔══════════════════════════════════════════════════════════════════╗
+# ║                     Ghostty — TokyoNight                        ║
+# ╚══════════════════════════════════════════════════════════════════╝
+
+# ── Font ──────────────────────────────────────────────────────────
+font-family = RobotoMono Nerd Font
+font-size = 15
+font-thicken = true
+adjust-cell-height = 35%
+
+# ── Theme ─────────────────────────────────────────────────────────
+theme = TokyoNight Night
+
+# ── Window ────────────────────────────────────────────────────────
+background-opacity = 0.93
+background-blur-radius = 20
+macos-titlebar-style = transparent
+macos-option-as-alt = true
+window-padding-x = 14
+window-padding-y = 10
+window-padding-balance = true
+window-decoration = true
+confirm-close-surface = false
+
+# ── Cursor ────────────────────────────────────────────────────────
+cursor-style = bar
+cursor-style-blink = true
+cursor-color = #f5a97f
+shell-integration-features = cursor,sudo,title
+
+# ── Mouse ─────────────────────────────────────────────────────────
+mouse-hide-while-typing = true
+copy-on-select = clipboard
+click-repeat-interval = 300
+
+# ── Scrollback ────────────────────────────────────────────────────
+scrollback-limit = 100000
+
+# ── Clipboard ─────────────────────────────────────────────────────
+clipboard-read = allow
+clipboard-write = allow
+clipboard-paste-protection = false
+
+# ── Keybinds ──────────────────────────────────────────────────────
+keybind = super+shift+comma=reload_config
+keybind = super+shift+i=inspector:toggle
+keybind = super+shift+enter=new_window
+
+# ── Shell ─────────────────────────────────────────────────────────
+command = /bin/zsh

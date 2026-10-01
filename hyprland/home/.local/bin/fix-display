@@ -1,0 +1,4 @@
+#!/bin/bash
+# Force laptop screen to be active
+swaymsg output eDP-1 enable
+swaymsg output eDP-1 mode 1920x1080@60Hz

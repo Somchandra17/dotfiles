@@ -1,0 +1,25 @@
+## Atuin configuration
+
+# Where to store the database
+db_path = "~/.local/share/atuin/history.db"
+
+# How often to sync (if enabled)
+auto_sync = false
+
+# Search mode: prefix, fulltext, fuzzy, skim
+search_mode = "fuzzy"
+
+# Filter mode: global, host, session, directory
+filter_mode = "global"
+
+# Style: auto, full, compact
+style = "compact"
+
+# Inline height for search
+inline_height = 30
+
+# Show preview of command output
+show_preview = true
+
+# Enter accepts immediately
+enter_accept = true

@@ -1,0 +1,15 @@
+/* Waybar Modules Extras */
+
+/* This is where you can add Extra Modules you wish. copy.sh will try to restore*/
+/* this file along with the unique configs and styles. */
+/* IMPORTANT, be mindful with , or ". else waybar will not start */
+
+{
+"custom/cliphist": {
+    "format": "📋",
+    "tooltip": true,
+    "tooltip-format": "Clipboard Manager",
+    "on-click": "~/.config/hypr/scripts/ClipManager.sh",
+    "on-click-right": "cliphist wipe && notify-send 'Clipboard cleared'"
+}
+}

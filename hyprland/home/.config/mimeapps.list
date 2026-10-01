@@ -1,0 +1,19 @@
+[Default Applications]
+text/html=anytype.desktop
+x-scheme-handler/http=firefox_firefox.desktop
+x-scheme-handler/https=firefox_firefox.desktop
+x-scheme-handler/about=firefox_firefox.desktop
+x-scheme-handler/unknown=firefox_firefox.desktop
+application/x-extension-burp=install4j_1lbzzah-BurpSuitePro.desktop
+x-scheme-handler/anytype=anytype.desktop
+text/csv=onlyoffice-desktopeditors_onlyoffice-desktopeditors.desktop
+inode/directory=thunar.desktop
+application/x-wayland-gnome-saved-search=thunar.desktop
+
+[Added Associations]
+image/jpeg=org.gnome.eog.desktop;
+text/csv=onlyoffice-desktopeditors_onlyoffice-desktopeditors.desktop;
+application/vnd.openxmlformats-officedocument.spreadsheetml.sheet=libreoffice_calc.desktop;onlyoffice-desktopeditors_onlyoffice-desktopeditors.desktop;
+application/pdf=org.gnome.Evince.desktop;com.google.Chrome.desktop;
+image/png=swappy.desktop;
+text/plain=sublime-text_subl.desktop;
