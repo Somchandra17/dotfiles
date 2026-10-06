@@ -1,12 +1,17 @@
 # dotfiles
 
-Personal configuration for two machines: a Linux laptop running Hyprland, and a MacBook Pro.
+Personal configuration for three machines: a Linux laptop running Hyprland, a Fedora desktop running niri, and a MacBook Pro.
 
 ```
 .
-├── hyprland/            Linux (Hyprland) desktop
+├── hyprland/            Linux laptop (Hyprland)
 │   ├── home/            mirror of $HOME: .config, .local, fonts, icons, shell rc files
 │   ├── packages/        apt / flatpak / snap package lists
+│   └── README.md
+├── niri/                Fedora desktop (niri + Noctalia)
+│   ├── home/            mirror of $HOME: niri, kitty, zsh, Noctalia settings, Wallhaven
+│   ├── system/          mirror of /etc, /usr/local, and the GRUB theme
+│   ├── packages/        kernel, NVIDIA, and Flatpak list
 │   └── README.md
 ├── macos/
 │   ├── terminal/        Ghostty, Kitty, ZSH, Starship, Atuin, Ranger, Fastfetch
@@ -25,6 +30,7 @@ Personal configuration for two machines: a Linux laptop running Hyprland, and a 
 | I want to... | Read |
 |---|---|
 | Set up the Hyprland desktop on Linux | [`hyprland/README.md`](hyprland/README.md) |
+| Restore the Fedora niri desktop | [`niri/README.md`](niri/README.md) |
 | Set up the macOS terminal | [`macos/terminal/README.md`](macos/terminal/README.md) |
 | Set up the Paneru window manager on macOS | [`macos/paneru/README.md`](macos/paneru/README.md) |
 | Let an AI agent deploy any of these | [`AGENTS.md`](AGENTS.md) |

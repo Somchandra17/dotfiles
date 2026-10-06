@@ -1,0 +1,160 @@
+config_version = 14
+
+[bar.default]
+capsule = true
+capsule_fill = "on_secondary"
+center = [ "workspaces", "clock", "weather", "theme_mode" ]
+end = [ "tray", "notifications", "clipboard", "group:g1", "control-center", "session" ]
+radius = 49
+start = [ "launcher", "wallhaven_2", "caffeine", "input_volume", "media" ]
+
+    [[bar.default.capsule_group]]
+    accordion = false
+    accordion_direction = "end"
+    enabled = true
+    fill = "outline"
+    id = "g1"
+    members = [ "network", "bluetooth", "volume" ]
+    opacity = 1.0
+    padding = 6.0
+    widget_spacing = 7
+
+[control_center]
+width = 1010
+
+    [control_center.calendar]
+    show_week_numbers = true
+
+[desktop_widgets]
+enabled = false
+schema_version = 2
+widget_order = []
+
+    [desktop_widgets.grid]
+    cell_size = 16
+    major_interval = 4
+    visible = true
+
+    [desktop_widgets.widget]
+
+[dock]
+background_opacity = 0.26999999396502972
+enabled = true
+icon_size = 39
+pinned = [
+    "org.gnome.Nautilus",
+    "discord",
+    "com.spotify.Client",
+    "com.stremio.Stremio",
+    "com.protonvpn.www",
+    "com.microsoft.VSCode",
+    "dev.warp.Warp",
+    "kitty",
+    "org.mozilla.firefox",
+    "com.sublimehq.SublimeText",
+    "org.localsend.localsend_app",
+    "io.anytype.anytype",
+    "btop",
+    "org.kde.krita",
+    "gimp",
+    "vlc",
+    "com.obsproject.Studio",
+    "steam"
+]
+show_dots = true
+
+[location]
+auto_locate = true
+
+[lockscreen_widgets]
+enabled = false
+schema_version = 2
+widget_order = [ "lockscreen-login-box@DP-5" ]
+
+    [lockscreen_widgets.grid]
+    cell_size = 16
+    major_interval = 4
+    visible = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@DP-5"]
+    box_height = 196.0
+    box_width = 810.0
+    cx = 1720.5750732421875
+    cy = 1230.6708984375
+    output = "DP-5"
+    placement_height = 1440.0
+    placement_width = 3440.0
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@DP-5".settings]
+        background_color = "surface_variant"
+        background_opacity = 0.88
+        background_radius = 12.0
+        center_password_text = false
+        input_opacity = 1.0
+        input_radius = 6.0
+        layout = "regular"
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = true
+        show_media = true
+        show_session_buttons = true
+        show_unlock_hint = true
+        show_weather = true
+
+[plugins]
+enabled = [ "noctalia/wallhaven" ]
+
+[shell]
+external_ip_enabled = true
+niri_overview_type_to_launch_enabled = true
+panel_anchor_bar = "default"
+telemetry_enabled = true
+time_format = "{:%I:%M %p}"
+
+    [shell.launcher]
+    app_grid = true
+
+    [shell.panel]
+    borders = false
+    floating_layer = "top"
+    open_near_click_control_center = true
+
+    [shell.screenshot]
+    confirm_region = true
+
+[theme]
+mode = "dark"
+source = "wallpaper"
+
+    [theme.templates]
+    builtin_ids = [ "btop" ]
+
+[wallpaper.default]
+path = "/home/som/Pictures/wallhaven-96j6px.jpg"
+
+[wallpaper.last]
+path = "/home/som/Pictures/wallhaven-96j6px.jpg"
+
+[wallpaper.monitors.DP-5]
+path = "/home/som/Pictures/wallhaven-96j6px.jpg"
+
+[widget.clock]
+anchor = true
+capsule = true
+font_weight = 900
+format = "{:%I:%M %p}"
+
+[widget.media]
+capsule = true
+hide_when_no_media = true
+max_length = 180
+show_progress = true
+
+[widget.wallhaven_2]
+type = "noctalia/wallhaven:wallhaven"
+
+[widget.workspaces]
+hide_when_empty = true
+style = "focus_hint"

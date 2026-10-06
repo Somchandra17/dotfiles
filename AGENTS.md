@@ -6,7 +6,8 @@ Instructions for AI agents (Claude Code, Codex, Cursor, etc.) deploying or updat
 
 | Part | Target | Files | Installer | Docs |
 |---|---|---|---|---|
-| Hyprland desktop | Linux (Wayland, Hyprland) | `hyprland/home/` mirrors `$HOME`; `hyprland/packages/*.txt` | none (manual copy) | `hyprland/README.md` |
+| Hyprland desktop | Linux laptop (Wayland, Hyprland) | `hyprland/home/` mirrors `$HOME`; `hyprland/packages/*.txt` | none (manual copy) | `hyprland/README.md` |
+| Niri desktop | Fedora desktop (niri, NVIDIA, Noctalia) | `niri/home/` mirrors `$HOME`; `niri/system/` mirrors `/`; `niri/packages/installed.txt` | none (manual copy) | `niri/README.md` |
 | macOS terminal | macOS (Apple Silicon) | `macos/terminal/home/` mirrors `$HOME` | none (manual copy) | `macos/terminal/README.md` |
 | Paneru WM | macOS (Apple Silicon, built-in keyboard) | `macos/paneru/home/` mirrors `$HOME` | `macos/paneru/install.sh` | `macos/paneru/README.md` |
 
@@ -50,6 +51,16 @@ The installer is idempotent. It installs `paneru` and `borders`, moves aside Lua
 
 Follow `hyprland/README.md`. Clone on Linux, not on a Mac (see section 6).
 
+### Niri (Fedora desktop)
+
+Follow `niri/README.md`. This part is the desktop PC, not the Hyprland laptop.
+
+- Copy `niri/home/` onto the user only after niri and Noctalia are installed from Fedora's own repos. Do not install `noctalia-shell`, Quickshell, or Dank Material Shell.
+- Copy `niri/system/` only with root, and only onto this machine. It contains the NVIDIA modprobe files, the GRUB theme, and a reorder hook. After GRUB files change, run `grub2-mkconfig -o /boot/grub2/grub.cfg`, then `/usr/local/sbin/reorder-grub-menu`, and confirm `efibootmgr` still puts Fedora before Windows.
+- Passwordless sudo is not in this backup. Do not recreate `/etc/sudoers.d/som-nopasswd` unless the user asks.
+- Do not copy kernel images from this repo. There are none. A new kernel still needs akmods to build and sign `kmod-nvidia-open` before that kernel is booted.
+- Mod is Super. Mod+Shift+Q stays unbound because it quits niri.
+
 ## 4. Verification
 
 ### Paneru
@@ -81,6 +92,17 @@ Finally, ask the user to press fn + ← and fn + 1 and confirm that focus and ro
 ### Terminal
 
 Run `exec zsh` with no errors; the Starship prompt renders; `z`, `eza`, `bat` and `atuin` resolve with `command -v`.
+
+### Niri
+
+```bash
+niri validate
+niri msg outputs          # DP-5 at 3440x1440
+test -f ~/.local/state/noctalia/settings.toml
+systemctl --user is-active cx-knob-columns.service
+```
+
+Ask the user to press Mod+Return (Kitty) and Mod+D (Noctalia launcher). Do not reboot to test a new kernel unless they ask.
 
 ## 5. Paneru facts that are easy to get wrong
 

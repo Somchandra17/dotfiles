@@ -1,0 +1,12 @@
+[Unit]
+Description=CX keyboard knob focuses niri columns
+After=graphical-session.target niri.service
+PartOf=graphical-session.target
+
+[Service]
+ExecStart=%h/.local/bin/cx-knob-columns
+Restart=on-failure
+RestartSec=2
+
+[Install]
+WantedBy=graphical-session.target

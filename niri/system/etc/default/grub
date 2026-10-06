@@ -1,0 +1,13 @@
+GRUB_TIMEOUT=4
+GRUB_TIMEOUT_STYLE=menu
+GRUB_DISTRIBUTOR="$(sed 's, release .*$,,g' /etc/system-release)"
+GRUB_DEFAULT=saved
+GRUB_DISABLE_SUBMENU=true
+GRUB_TERMINAL_OUTPUT=gfxterm
+GRUB_CMDLINE_LINUX="rhgb quiet nvidia-drm.modeset=1 rd.driver.blacklist=nouveau,nova_core modprobe.blacklist=nouveau,nova_core"
+GRUB_DISABLE_RECOVERY="true"
+GRUB_ENABLE_BLSCFG=false
+GRUB_DISABLE_OS_PROBER=false
+GRUB_GFXMODE=3440x1440x32,3440x1440,auto
+GRUB_GFXPAYLOAD_LINUX=keep
+GRUB_THEME="/boot/grub2/themes/bsol/theme.txt"

@@ -1,0 +1,5 @@
+#!/usr/bin/bash
+# kernel-install runs 99-grub-mkconfig first. This runs after it and puts
+# Windows ahead of the rescue kernel in the traditional grub menu.
+[[ "${1:-}" == add || "${1:-}" == remove ]] || exit 0
+/usr/local/sbin/reorder-grub-menu

@@ -1,0 +1,259 @@
+input {
+    focus-follows-mouse max-scroll-amount="37%"
+    keyboard {
+        xkb {
+            layout "us"
+        }
+    }
+    touchpad {
+        tap
+        natural-scroll
+    }
+    mouse {
+    }
+    trackpoint
+}
+
+output "DP-5" {
+    mode "3440x1440@159.962"
+    scale 1
+    position x=0 y=0
+}
+
+layout {
+    gaps 14
+    center-focused-column "never"
+    preset-column-widths {
+        proportion 0.25
+        proportion 0.33
+        proportion 0.4
+        proportion 0.5
+        proportion 0.6
+        proportion 0.7
+        proportion 0.8
+        proportion 0.9
+        proportion 1.0
+    }
+    default-column-width { proportion 0.5; }
+    focus-ring {
+        width 2
+    }
+    shadow {
+        on
+    }
+    border {
+        off
+
+        width 1
+    }
+}
+
+spawn-at-startup "noctalia"
+spawn-at-startup "/usr/libexec/polkit-mate-authentication-agent-1"
+
+prefer-no-csd
+
+environment {
+    QT_QPA_PLATFORM "wayland;xcb"
+    ELECTRON_OZONE_PLATFORM_HINT "auto"
+}
+
+window-rule {
+    geometry-corner-radius 17
+    clip-to-geometry true
+}
+
+window-rule {
+    match app-id="dev.noctalia.Noctalia"
+    open-floating true
+}
+
+debug {
+    render-drm-device "/dev/dri/renderD129"
+    honor-xdg-activation-with-invalid-serial
+}
+
+// Startup cheat sheet. Only titled binds are listed; duplicates stay hidden.
+hotkey-overlay {
+    hide-not-bound
+}
+
+binds {
+    // Familiar Hyprland chords that have a niri or Noctalia action.
+    // Mod+Shift+Q stays unbound: in Hyprland it killed the process, in niri that chord quits the session.
+
+    Mod+D hotkey-overlay-title="Open the launcher" { spawn-sh "noctalia msg panel-toggle launcher"; }
+    Mod+Return hotkey-overlay-title="Open a terminal" { spawn "kitty"; }
+    Mod+Ctrl+E hotkey-overlay-title="Open files" { spawn "nautilus"; }
+    Mod+Shift+C hotkey-overlay-title="Open VS Code" { spawn-sh "code --enable-features=UseOzonePlatform --ozone-platform=wayland --disable-gpu-sandbox"; }
+    Mod+I hotkey-overlay-title="Open settings" { spawn-sh "noctalia msg settings-open"; }
+    Mod+L hotkey-overlay-title="Lock the screen" { spawn-sh "noctalia msg session lock"; }
+    Mod+V hotkey-overlay-title="Clipboard history" { spawn-sh "noctalia msg panel-toggle clipboard"; }
+    Mod+A hotkey-overlay-title="Control center" { spawn-sh "noctalia msg panel-toggle control-center"; }
+    Mod+O hotkey-overlay-title=null { spawn-sh "noctalia msg panel-toggle control-center"; }
+    Mod+Ctrl+V hotkey-overlay-title="Volume mixer" { spawn-sh "noctalia msg panel-open control-center audio"; }
+    Ctrl+Shift+Escape hotkey-overlay-title="Task manager" { spawn "kitty" "btop"; }
+
+    Mod+Left hotkey-overlay-title="Focus column left" { focus-column-left; }
+    Mod+Right hotkey-overlay-title="Focus column right" { focus-column-right; }
+    Mod+Up hotkey-overlay-title="Focus window up" { focus-window-up; }
+    Mod+Down hotkey-overlay-title="Focus window down" { focus-window-down; }
+    Mod+Alt+Left hotkey-overlay-title="Focus first column" { focus-column-first; }
+    Mod+Alt+Right hotkey-overlay-title="Focus last column" { focus-column-last; }
+    Mod+Home hotkey-overlay-title=null { focus-column-first; }
+    Mod+End hotkey-overlay-title=null { focus-column-last; }
+
+    Mod+Shift+Left hotkey-overlay-title="Move window left" { move-column-left; }
+    Mod+Shift+Right hotkey-overlay-title="Move window right" { move-column-right; }
+    Mod+Shift+Up hotkey-overlay-title="Move window to workspace above" { move-column-to-workspace-up; }
+    Mod+Shift+Down hotkey-overlay-title="Move window to workspace below" { move-column-to-workspace-down; }
+    Mod+Alt+Up hotkey-overlay-title="Move window up in the stack" { move-window-up; }
+    Mod+Alt+Down hotkey-overlay-title="Move window down in the stack" { move-window-down; }
+    Mod+Alt+Shift+Left hotkey-overlay-title="Move window to the start" { move-column-to-first; }
+    Mod+Alt+Shift+Right hotkey-overlay-title="Move window to the end" { move-column-to-last; }
+
+    Mod+Minus hotkey-overlay-title="Narrower column" { switch-preset-column-width-back; }
+    Mod+Equal hotkey-overlay-title="Wider column" { switch-preset-column-width; }
+    Mod+Ctrl+Left hotkey-overlay-title=null { switch-preset-column-width-back; }
+    Mod+Ctrl+Right hotkey-overlay-title=null { switch-preset-column-width; }
+    Mod+Ctrl+Up hotkey-overlay-title="Taller window" { set-window-height "+10%"; }
+    Mod+Ctrl+Down hotkey-overlay-title="Shorter window" { set-window-height "-10%"; }
+    Mod+R hotkey-overlay-title=null { switch-preset-column-width; }
+    Mod+Shift+R hotkey-overlay-title=null { switch-preset-column-width-back; }
+
+    Mod+C hotkey-overlay-title="Center the window" { center-column; }
+    Mod+Comma hotkey-overlay-title="Stack into the left column" { consume-or-expel-window-left; }
+    Mod+Period hotkey-overlay-title="Unstack the window" { expel-window-from-column; }
+    Mod+E hotkey-overlay-title="Reset window height" { reset-window-height; }
+    Mod+Space hotkey-overlay-title="Float or tile" { toggle-window-floating; }
+    Mod+F hotkey-overlay-title="Full width" { maximize-column; }
+    Mod+Shift+F hotkey-overlay-title=null { maximize-column; }
+    Mod+Alt+F hotkey-overlay-title="Fullscreen" { fullscreen-window; }
+    Mod+Ctrl+F hotkey-overlay-title="Fake fullscreen" { toggle-windowed-fullscreen; }
+
+    Mod+Q hotkey-overlay-title="Close window" { close-window; }
+    Alt+F4 hotkey-overlay-title=null { close-window; }
+    Mod+Tab hotkey-overlay-title="Overview" { toggle-overview; }
+    Mod+Slash hotkey-overlay-title="Show this cheat sheet" { show-hotkey-overlay; }
+    Mod+H hotkey-overlay-title=null { show-hotkey-overlay; }
+
+    Print hotkey-overlay-title="Screenshot the screen" { spawn-sh "noctalia msg screenshot-fullscreen"; }
+    Mod+Shift+S hotkey-overlay-title="Screenshot a region" { spawn-sh "noctalia msg screenshot-region"; }
+
+    Mod+1 { focus-workspace 1; }
+    Mod+2 { focus-workspace 2; }
+    Mod+3 { focus-workspace 3; }
+    Mod+4 { focus-workspace 4; }
+    Mod+5 { focus-workspace 5; }
+    Mod+6 { focus-workspace 6; }
+    Mod+7 { focus-workspace 7; }
+    Mod+8 { focus-workspace 8; }
+    Mod+9 { focus-workspace 9; }
+    Mod+0 { focus-workspace 10; }
+    Mod+Shift+1 { move-column-to-workspace 1; }
+    Mod+Shift+2 { move-column-to-workspace 2; }
+    Mod+Shift+3 { move-column-to-workspace 3; }
+    Mod+Shift+4 { move-column-to-workspace 4; }
+    Mod+Shift+5 { move-column-to-workspace 5; }
+    Mod+Shift+6 { move-column-to-workspace 6; }
+    Mod+Shift+7 { move-column-to-workspace 7; }
+    Mod+Shift+8 { move-column-to-workspace 8; }
+    Mod+Shift+9 { move-column-to-workspace 9; }
+    Mod+Shift+0 { move-column-to-workspace 10; }
+
+    Mod+Page_Down { focus-workspace-down; }
+    Mod+Page_Up   { focus-workspace-up; }
+    Mod+Shift+Page_Down { move-column-to-workspace-down; }
+    Mod+Shift+Page_Up   { move-column-to-workspace-up; }
+    Mod+Ctrl+Shift+Right { move-column-to-workspace-down; }
+    Mod+Ctrl+Shift+Left  { move-column-to-workspace-up; }
+    Mod+WheelScrollDown cooldown-ms=150 { focus-workspace-down; }
+    Mod+WheelScrollUp   cooldown-ms=150 { focus-workspace-up; }
+    Mod+Shift+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
+    Mod+Shift+WheelScrollUp   cooldown-ms=150 { move-column-to-workspace-up; }
+
+    XF86AudioRaiseVolume { spawn-sh "noctalia msg volume-up"; }
+    XF86AudioLowerVolume { spawn-sh "noctalia msg volume-down"; }
+    XF86AudioMute { spawn-sh "noctalia msg volume-mute"; }
+    XF86AudioMicMute { spawn-sh "noctalia msg mic-mute"; }
+    XF86AudioPlay { spawn-sh "playerctl play-pause"; }
+    XF86AudioPause { spawn-sh "playerctl play-pause"; }
+    XF86AudioNext { spawn-sh "playerctl next"; }
+    XF86AudioPrev { spawn-sh "playerctl previous"; }
+    Mod+Shift+P { spawn-sh "playerctl play-pause"; }
+    Mod+Shift+N { spawn-sh "playerctl next"; }
+    Mod+Shift+B { spawn-sh "playerctl previous"; }
+}
+
+animations {
+    workspace-switch {
+        spring damping-ratio=0.85 stiffness=700 epsilon=0.0001
+    }
+
+    horizontal-view-movement {
+        duration-ms 180
+    }
+
+    window-open {
+      duration-ms 170
+      curve "ease-out-quad"
+      custom-shader r"
+        vec4 zoom_in(vec3 coords_geo, vec3 size_geo) {
+          float progress = niri_clamped_progress;
+          float scale = progress;
+          vec2 coords = (coords_geo.xy - vec2(0.5, 0.5)) * size_geo.xy;
+          coords = coords / scale;
+          coords_geo = vec3(coords / size_geo.xy + vec2(0.5, 0.5), 1.0);
+          vec3 coords_tex = niri_geo_to_tex * coords_geo;
+          vec4 color = texture2D(niri_tex, coords_tex.st);
+          color.a *= progress;
+
+          return color;
+        }
+        vec4 open_color(vec3 coords_geo, vec3 size_geo) {
+          return zoom_in(coords_geo, size_geo);
+        }
+      "
+    }
+
+    // Original by Lemmy: https://github.com/ItsLemmy
+    window-close {
+      duration-ms 700
+      curve "linear"
+      custom-shader r"
+        vec4 fall_and_rotate(vec3 coords_geo, vec3 size_geo) {
+          float progress = niri_clamped_progress * niri_clamped_progress;
+          vec2 coords = (coords_geo.xy - vec2(0.5, 1.0)) * size_geo.xy;
+          coords.y -= progress * 1440.0;
+          float random = (niri_random_seed - 0.5) / 2.0;
+          random = sign(random) - random;
+          float max_angle = 0.5 * random;
+          float angle = progress * max_angle;
+          mat2 rotate = mat2(cos(angle), -sin(angle), sin(angle), cos(angle));
+          coords = rotate * coords;
+          coords_geo = vec3(coords / size_geo.xy + vec2(0.5, 1.0), 1.0);
+          vec3 coords_tex = niri_geo_to_tex * coords_geo;
+          vec4 color = texture2D(niri_tex, coords_tex.st);
+          color.a *= (1.0 - progress);
+
+          return color;
+        }
+        vec4 close_color(vec3 coords_geo, vec3 size_geo) {
+          return fall_and_rotate(coords_geo, size_geo);
+        }
+      "
+    }
+    slowdown 0.9
+    window-movement {
+        duration-ms 120
+    }
+    window-resize {
+        duration-ms 240
+    }
+    overview-open-close {
+        off
+    }
+}
+cursor {
+    xcursor-size 26
+}

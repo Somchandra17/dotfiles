@@ -1,0 +1,75 @@
+#!/bin/bash
+# After grub2-mkconfig, Fedora lists every kernel, then the rescue image,
+# then Windows. This machine wants: current kernels, Windows, rescue.
+set -euo pipefail
+
+cfg=/boot/grub2/grub.cfg
+[[ -f "$cfg" ]] || exit 0
+
+python3 - "$cfg" <<'PY'
+import re
+import sys
+from pathlib import Path
+
+path = Path(sys.argv[1])
+text = path.read_text()
+
+def blocks(text):
+    found = []
+    pos = 0
+    while True:
+        match = re.search(r"(?m)^menuentry\s", text[pos:])
+        if not match:
+            break
+        start = pos + match.start()
+        brace = text.find("{", start)
+        if brace < 0:
+            break
+        depth = 0
+        end = None
+        for index in range(brace, len(text)):
+            char = text[index]
+            if char == "{":
+                depth += 1
+            elif char == "}":
+                depth -= 1
+                if depth == 0:
+                    end = index + 1
+                    if end < len(text) and text[end] == "\n":
+                        end += 1
+                    break
+        if end is None:
+            break
+        found.append((start, end, text[start:end]))
+        pos = end
+    return found
+
+def title(body):
+    match = re.search(r"^menuentry '([^']*)'", body)
+    return match.group(1) if match else ""
+
+entries = blocks(text)
+rescue = [item for item in entries if "rescue" in title(item[2]).lower()]
+windows = [item for item in entries if "windows" in title(item[2]).lower()]
+if not rescue or not windows:
+    print("reorder-grub-menu: nothing to move", file=sys.stderr)
+    sys.exit(0)
+
+if rescue[0][0] > windows[-1][1]:
+    print("reorder-grub-menu: order already correct")
+    sys.exit(0)
+
+removed = text
+for _start, _end, body in reversed(rescue):
+    removed = removed.replace(body, "", 1)
+
+windows_now = [item for item in blocks(removed) if "windows" in title(item[2]).lower()]
+if not windows_now:
+    sys.exit("reorder-grub-menu: Windows entry disappeared")
+
+insert_at = windows_now[-1][1]
+rescue_text = "".join(body for _s, _e, body in rescue)
+updated = removed[:insert_at] + rescue_text + removed[insert_at:]
+path.write_text(updated)
+print("reorder-grub-menu: Windows is before the rescue kernel")
+PY

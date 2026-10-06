@@ -1,0 +1,7 @@
+#!/bin/bash
+set -euo pipefail
+id="$(efibootmgr | awk -F'[* ]+' '/Windows Boot Manager/{print $1; exit}')"
+id="${id#Boot}"
+test -n "$id"
+efibootmgr -n "$id"
+reboot

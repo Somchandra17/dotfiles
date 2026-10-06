@@ -1,0 +1,4 @@
+# The CX 2.4G receiver's knob is a consumer-control device tagged only as a
+# power switch, so the logged-in user cannot read its horizontal wheel.
+# This file is numbered before 73-seat-late so the uaccess tag is applied.
+SUBSYSTEM=="input", KERNEL=="event*", ATTRS{name}=="CX 2.4G Wireless Receiver Consumer Control", TAG+="uaccess", GROUP="input", MODE="0660"
