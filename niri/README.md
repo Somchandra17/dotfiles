@@ -24,6 +24,7 @@ Daily session on the desktop PC. GNOME stays installed as the recovery login. Th
 | `home/.zshrc`, `home/.zprofile` | `~/` | Lean zsh. No Oh My Zsh. Grok's bin is on `PATH` |
 | `home/.local/bin/cx-knob-columns` | same | CX keyboard knob focuses the column left/right |
 | `home/.config/autostart/gnome-keyring-*.desktop` | `~/.config/autostart/` | Secret storage, PKCS#11, and the SSH agent. Fedora's copies are GNOME-only; these start them under niri |
+| `home/.config/environment.d/99-ssh-auth-sock.conf` | `~/.config/environment.d/` | Points `SSH_AUTH_SOCK` at the keyring socket for the next login |
 | `home/.config/systemd/user/cx-knob-columns.service` | same | User service for that knob |
 | `home/.config/systemd/user/graphical-session.target.wants/cx-knob-columns.service` | same | Enables that service in the graphical session |
 | `home/.var/app/org.mozilla.firefox/.../user.js` | same | Middle-click autoscroll on. Not the rest of the Firefox profile |
@@ -73,7 +74,7 @@ Fedora ships `gnome-keyring-secrets.desktop`, `gnome-keyring-pkcs11.desktop`, an
 
 Other `OnlyShowIn=GNOME` autostart entries are left skipped on purpose: Orca, localsearch, the disk-utility notifier, and the AT-SPI bus. The polkit agent is `OnlyShowIn=MATE`, so it is started from `spawn-at-startup` in the niri config instead.
 
-The SSH agent socket is `/run/user/1000/keyring/ssh`. This backup does not export `SSH_AUTH_SOCK`, so a terminal opened outside the keyring's own environment will not see the agent until that variable is set.
+`SSH_AUTH_SOCK` is `${XDG_RUNTIME_DIR}/keyring/ssh`. `home/.config/environment.d/99-ssh-auth-sock.conf` sets it for the next login. `home/.zshrc` sets it for a terminal opened before that.
 
 ## Restoring
 

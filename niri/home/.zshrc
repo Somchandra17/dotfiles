@@ -13,6 +13,12 @@ setopt AUTO_CD CORRECT
 export PATH="$HOME/.grok/bin:$PATH"
 fpath=("$HOME/.grok/completions/zsh" $fpath)
 
+# Same socket as ~/.config/environment.d/99-ssh-auth-sock.conf. A terminal
+# started before the next login does not inherit that file.
+if [[ -z ${SSH_AUTH_SOCK:-} && -S ${XDG_RUNTIME_DIR:-}/keyring/ssh ]]; then
+    export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/keyring/ssh"
+fi
+
 autoload -Uz compinit
 if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
     compinit
