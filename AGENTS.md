@@ -58,6 +58,7 @@ Follow `niri/README.md`. This part is the desktop PC, not the Hyprland laptop.
 - Copy `niri/home/` onto the user only after niri and Noctalia are installed from Fedora's own repos. Do not install `noctalia-shell`, Quickshell, or Dank Material Shell.
 - Copy `niri/system/` only with root, and only onto this machine. It contains the NVIDIA modprobe files, the GRUB theme, and a reorder hook. After GRUB files change, run `grub2-mkconfig -o /boot/grub2/grub.cfg`, then `/usr/local/sbin/reorder-grub-menu`, and confirm `efibootmgr` still puts Fedora before Windows.
 - Passwordless sudo is not in this backup. Do not recreate `/etc/sudoers.d/som-nopasswd` unless the user asks.
+- The three `gnome-keyring-*.desktop` files in `niri/home/.config/autostart/` are required. Do not restore Fedora's originals over them; those are limited to GNOME, Unity, and MATE, so a niri login never starts the secret service.
 - Do not copy kernel images from this repo. There are none. A new kernel still needs akmods to build and sign `kmod-nvidia-open` before that kernel is booted.
 - Mod is Super. Mod+Shift+Q stays unbound because it quits niri.
 

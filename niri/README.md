@@ -23,6 +23,7 @@ Daily session on the desktop PC. GNOME stays installed as the recovery login. Th
 | `home/.config/kitty/` | `~/.config/kitty/` | Fantasque Sans Mono 14, opacity 0.9, OneDark, splits layout |
 | `home/.zshrc`, `home/.zprofile` | `~/` | Lean zsh. No Oh My Zsh. Grok's bin is on `PATH` |
 | `home/.local/bin/cx-knob-columns` | same | CX keyboard knob focuses the column left/right |
+| `home/.config/autostart/gnome-keyring-*.desktop` | `~/.config/autostart/` | Secret storage, PKCS#11, and the SSH agent. Fedora's copies are GNOME-only; these start them under niri |
 | `home/.config/systemd/user/cx-knob-columns.service` | same | User service for that knob |
 | `home/.config/systemd/user/graphical-session.target.wants/cx-knob-columns.service` | same | Enables that service in the graphical session |
 | `home/.var/app/org.mozilla.firefox/.../user.js` | same | Middle-click autoscroll on. Not the rest of the Firefox profile |
@@ -65,6 +66,14 @@ Mod is Super. The Paneru fn key maps to Super.
 - Mod+Shift+Q is unbound. In niri that chord quits the session
 
 `center-focused-column` is `never`, so two half-width windows sit side by side. Variable refresh is off.
+
+## Keyring
+
+Fedora ships `gnome-keyring-secrets.desktop`, `gnome-keyring-pkcs11.desktop`, and `gnome-keyring-ssh.desktop` with `OnlyShowIn=GNOME;Unity;MATE;`. A niri login skips them, so `gh auth login` can finish in the browser and then fail to save the token. The copies in `home/.config/autostart/` drop that line. GDM still unlocks the keyring through `pam_gnome_keyring.so` in `/usr/lib/pam.d/gdm-password`.
+
+Other `OnlyShowIn=GNOME` autostart entries are left skipped on purpose: Orca, localsearch, the disk-utility notifier, and the AT-SPI bus. The polkit agent is `OnlyShowIn=MATE`, so it is started from `spawn-at-startup` in the niri config instead.
+
+The SSH agent socket is `/run/user/1000/keyring/ssh`. This backup does not export `SSH_AUTH_SOCK`, so a terminal opened outside the keyring's own environment will not see the agent until that variable is set.
 
 ## Restoring
 
