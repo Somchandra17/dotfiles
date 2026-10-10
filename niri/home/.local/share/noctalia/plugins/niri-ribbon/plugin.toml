@@ -1,0 +1,14 @@
+id = "som/niri-ribbon"
+name = "Niri Ribbon"
+version = "1.0.0"
+plugin_api = 9
+author = "som"
+license = "MIT"
+dependencies = []
+tags = ["niri", "bar"]
+icon = "layout-navbar"
+description = "Shows where the niri view sits, and how many columns are off screen."
+
+[[widget]]
+id = "ribbon"
+entry = "ribbon.luau"

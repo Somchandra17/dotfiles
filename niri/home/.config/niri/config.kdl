@@ -50,6 +50,8 @@ layout {
 
 spawn-at-startup "noctalia"
 spawn-at-startup "/usr/libexec/polkit-mate-authentication-agent-1"
+spawn-at-startup "flameshot"
+spawn-at-startup "/home/som/.local/bin/nirinit" "--save-interval" "300"
 
 prefer-no-csd
 
@@ -69,7 +71,7 @@ window-rule {
 }
 
 debug {
-    render-drm-device "/dev/dri/renderD129"
+    render-drm-device "/dev/dri/by-path/pci-0000:01:00.0-render"
     honor-xdg-activation-with-invalid-serial
 }
 
@@ -84,8 +86,10 @@ binds {
 
     Mod+D hotkey-overlay-title="Open the launcher" { spawn-sh "noctalia msg panel-toggle launcher"; }
     Mod+Return hotkey-overlay-title="Open a terminal" { spawn "kitty"; }
+    Mod+Shift+Return hotkey-overlay-title="Focus an open terminal" { spawn "/home/som/.local/bin/niri-ror" "--app-id" "kitty" "--" "/usr/bin/kitty"; }
     Mod+Ctrl+E hotkey-overlay-title="Open files" { spawn "nautilus"; }
-    Mod+Shift+C hotkey-overlay-title="Open VS Code" { spawn-sh "code --enable-features=UseOzonePlatform --ozone-platform=wayland --disable-gpu-sandbox"; }
+    Mod+Shift+C hotkey-overlay-title="Focus or open VS Code" { spawn "/home/som/.local/bin/niri-ror" "--app-id-regex" "^(code|com\\.microsoft\\.VSCode)$" "--" "/usr/share/code/code" "--enable-features=UseOzonePlatform" "--ozone-platform=wayland" "--disable-gpu-sandbox"; }
+    Mod+B hotkey-overlay-title="Focus or open Firefox" { spawn "/home/som/.local/bin/niri-ror" "--app-id" "org.mozilla.firefox" "--" "/var/lib/flatpak/exports/bin/org.mozilla.firefox"; }
     Mod+I hotkey-overlay-title="Open settings" { spawn-sh "noctalia msg settings-open"; }
     Mod+L hotkey-overlay-title="Lock the screen" { spawn-sh "noctalia msg session lock"; }
     Mod+V hotkey-overlay-title="Clipboard history" { spawn-sh "noctalia msg panel-toggle clipboard"; }
@@ -96,8 +100,8 @@ binds {
 
     Mod+Left hotkey-overlay-title="Focus column left" { focus-column-left; }
     Mod+Right hotkey-overlay-title="Focus column right" { focus-column-right; }
-    Mod+Up hotkey-overlay-title="Focus window up" { focus-window-up; }
-    Mod+Down hotkey-overlay-title="Focus window down" { focus-window-down; }
+    Mod+Up hotkey-overlay-title="Workspace up" { focus-workspace-up; }
+    Mod+Down hotkey-overlay-title="Workspace down" { focus-workspace-down; }
     Mod+Alt+Left hotkey-overlay-title="Focus first column" { focus-column-first; }
     Mod+Alt+Right hotkey-overlay-title="Focus last column" { focus-column-last; }
     Mod+Home hotkey-overlay-title=null { focus-column-first; }
@@ -137,8 +141,8 @@ binds {
     Mod+Slash hotkey-overlay-title="Show this cheat sheet" { show-hotkey-overlay; }
     Mod+H hotkey-overlay-title=null { show-hotkey-overlay; }
 
-    Print hotkey-overlay-title="Screenshot the screen" { spawn-sh "noctalia msg screenshot-fullscreen"; }
-    Mod+Shift+S hotkey-overlay-title="Screenshot a region" { spawn-sh "noctalia msg screenshot-region"; }
+    Print hotkey-overlay-title="Screenshot the screen" { spawn "flameshot" "full"; }
+    Mod+Shift+S hotkey-overlay-title="Screenshot a region" { spawn "flameshot" "gui"; }
 
     Mod+1 { focus-workspace 1; }
     Mod+2 { focus-workspace 2; }

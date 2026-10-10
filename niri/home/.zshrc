@@ -119,3 +119,6 @@ source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 PROMPT='%F{green}%n@%m%f:%F{blue}%~%f%# '
 
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"
+
+# opencode
+export PATH=/home/som/.opencode/bin:$PATH

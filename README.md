@@ -12,6 +12,8 @@ Personal configuration for three machines: a Linux laptop running Hyprland, a Fe
 │   ├── home/            mirror of $HOME: niri, kitty, zsh, Noctalia settings, Wallhaven
 │   ├── system/          mirror of /etc, /usr/local, and the GRUB theme
 │   ├── packages/        kernel, NVIDIA, and Flatpak list
+│   ├── docs/            NVIDIA update/boot reliability note
+│   ├── maintenance/     tested NVIDIA preparation installer and rollback
 │   └── README.md
 ├── macos/
 │   ├── terminal/        Ghostty, Kitty, ZSH, Starship, Atuin, Ranger, Fastfetch

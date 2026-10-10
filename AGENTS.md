@@ -7,7 +7,7 @@ Instructions for AI agents (Claude Code, Codex, Cursor, etc.) deploying or updat
 | Part | Target | Files | Installer | Docs |
 |---|---|---|---|---|
 | Hyprland desktop | Linux laptop (Wayland, Hyprland) | `hyprland/home/` mirrors `$HOME`; `hyprland/packages/*.txt` | none (manual copy) | `hyprland/README.md` |
-| Niri desktop | Fedora desktop (niri, NVIDIA, Noctalia) | `niri/home/` mirrors `$HOME`; `niri/system/` mirrors `/`; `niri/packages/installed.txt` | none (manual copy) | `niri/README.md` |
+| Niri desktop | Fedora desktop (niri, NVIDIA, Noctalia) | `niri/home/` mirrors `$HOME`; `niri/system/` mirrors `/`; `niri/packages/installed.txt` | manual copy; NVIDIA installer in `niri/maintenance/nvidia-reliability/` | `niri/README.md` |
 | macOS terminal | macOS (Apple Silicon) | `macos/terminal/home/` mirrors `$HOME` | none (manual copy) | `macos/terminal/README.md` |
 | Paneru WM | macOS (Apple Silicon, built-in keyboard) | `macos/paneru/home/` mirrors `$HOME` | `macos/paneru/install.sh` | `macos/paneru/README.md` |
 
@@ -59,7 +59,9 @@ Follow `niri/README.md`. This part is the desktop PC, not the Hyprland laptop.
 - Copy `niri/system/` only with root, and only onto this machine. It contains the NVIDIA modprobe files, the GRUB theme, and a reorder hook. After GRUB files change, run `grub2-mkconfig -o /boot/grub2/grub.cfg`, then `/usr/local/sbin/reorder-grub-menu`, and confirm `efibootmgr` still puts Fedora before Windows.
 - Passwordless sudo is not in this backup. Do not recreate `/etc/sudoers.d/som-nopasswd` unless the user asks.
 - The three `gnome-keyring-*.desktop` files in `niri/home/.config/autostart/` are required. Do not restore Fedora's originals over them; those are limited to GNOME, Unity, and MATE, so a niri login never starts the secret service.
-- Do not copy kernel images from this repo. There are none. A new kernel still needs akmods to build and sign `kmod-nvidia-open` before that kernel is booted.
+- Do not copy kernel images from this repo. There are none. NVIDIA must stay out of the initramfs: never restore NVIDIA `add_drivers` or require an embedded module. Akmods builds and signs `kmod-nvidia-open` on the real root.
+- Keep the NVIDIA alias blacklist, boot preparation helper/service, GDM drop-in, and dracut omission together. The local service waits for akmods, verifies/repairs matching signed open modules, then explicitly loads NVIDIA before GDM. Copying only the alias blacklist can prevent automatic GPU loading.
+- For this same machine, read `niri/docs/nvidia-reliability.md` and every included installer/helper script before running `sudo ./niri/maintenance/nvidia-reliability/install.sh`. It checks the existing enrolled key and Linux boot partition, builds inspected images, and supports rollback. Do not create/enroll another key, disable Secure Boot, or change Windows/GRUB for this fix.
 - Mod is Super. Mod+Shift+Q stays unbound because it quits niri.
 
 ## 4. Verification

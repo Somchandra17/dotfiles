@@ -1,0 +1,23 @@
+# Apps that niri already starts, or that should not come back as windows.
+[skip]
+apps = [
+    "flameshot",
+    "org.flameshot.Flameshot",
+    "noctalia",
+    "dev.noctalia.Noctalia",
+]
+
+# nirinit can only run one program name, so each app id maps to a real executable.
+[launch]
+"kitty" = "/usr/bin/kitty"
+"org.mozilla.firefox" = "/var/lib/flatpak/exports/bin/org.mozilla.firefox"
+"com.microsoft.VSCode" = "/usr/share/code/code"
+"discord" = "/usr/bin/discord"
+"obs" = "/usr/bin/obs"
+"google-chrome" = "/usr/bin/google-chrome-stable"
+"dev.warp.Warp" = "/usr/bin/warp-terminal"
+"Antigravity" = "/home/som/.local/bin/antigravity"
+"com.spotify.Client" = "/var/lib/flatpak/exports/bin/com.spotify.Client"
+"md.obsidian.Obsidian" = "/var/lib/flatpak/exports/bin/md.obsidian.Obsidian"
+"com.getpostman.Postman" = "/var/lib/flatpak/exports/bin/com.getpostman.Postman"
+"com.stremio.Stremio" = "/var/lib/flatpak/exports/bin/com.stremio.Stremio"

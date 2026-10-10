@@ -3,7 +3,7 @@ config_version = 14
 [bar.default]
 capsule = true
 capsule_fill = "on_secondary"
-center = [ "workspaces", "clock", "weather", "theme_mode" ]
+center = [ "workspaces", "niri_ribbon", "clock", "weather", "theme_mode" ]
 end = [ "tray", "notifications", "clipboard", "group:g1", "control-center", "session" ]
 radius = 49
 start = [ "launcher", "wallhaven_2", "caffeine", "input_volume", "media" ]
@@ -11,10 +11,11 @@ start = [ "launcher", "wallhaven_2", "caffeine", "input_volume", "media" ]
     [[bar.default.capsule_group]]
     accordion = false
     accordion_direction = "end"
+    border_width = 1.0
     enabled = true
     fill = "outline"
     id = "g1"
-    members = [ "network", "bluetooth", "volume" ]
+    members = [ "volume", "network", "bluetooth" ]
     opacity = 1.0
     padding = 6.0
     widget_spacing = 7
@@ -104,7 +105,10 @@ widget_order = [ "lockscreen-login-box@DP-5" ]
         show_weather = true
 
 [plugins]
-enabled = [ "noctalia/wallhaven" ]
+enabled = [ "noctalia/wallhaven", "som/niri-ribbon" ]
+
+[widget.niri_ribbon]
+type = "som/niri-ribbon:ribbon"
 
 [shell]
 external_ip_enabled = true

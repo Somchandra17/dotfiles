@@ -1,4 +1,4 @@
-=== rpm -q kernel and nvidia kmods ===
+=== rpm -q kernel and nvidia kmods (refreshed 2026-10-10) ===
 kernel-core-7.2.8-300.fc45.x86_64
 kernel-core-7.2.9-300.fc45.x86_64
 kernel-7.2.8-300.fc45.x86_64
@@ -9,13 +9,13 @@ kernel-modules-extra-7.2.8-300.fc45.x86_64
 kernel-modules-extra-7.2.9-300.fc45.x86_64
 kernel-devel-7.2.8-300.fc45.x86_64
 kernel-devel-7.2.9-300.fc45.x86_64
-akmod-nvidia-615.71.09-3.fc45.x86_64
-akmod-nvidia-open-615.71.09-1.fc45.x86_64
+akmod-nvidia-615.78.08-1.fc45.x86_64
+akmod-nvidia-open-615.78.08-1.fc45.x86_64
 package kmod-nvidia-open is not installed
 
 === versioned kmod-nvidia-open (bare name is not installed; both kernel builds are) ===
-kmod-nvidia-open-7.2.8-300.fc45.x86_64-615.71.09-1.fc45.x86_64
-kmod-nvidia-open-7.2.9-300.fc45.x86_64-615.71.09-1.fc45.x86_64
+kmod-nvidia-open-7.2.8-300.fc45.x86_64-615.78.08-1.fc45.x86_64
+kmod-nvidia-open-7.2.9-300.fc45.x86_64-615.78.08-1.fc45.x86_64
 
 === rpm -q desktop packages ===
 niri-26.04-2.fc45.x86_64
@@ -23,11 +23,11 @@ noctalia-5.2.1-1.fc45.x86_64
 kitty-0.48.2-1.fc45.x86_64
 zsh-5.9.2-3.fc45.x86_64
 neovim-0.12.5-1.fc45.x86_64
-nvidia-settings-615.71.09-1.fc45.x86_64
+nvidia-settings-615.78.08-1.fc45.x86_64
 libva-nvidia-driver-0.0.18-1.fc45.x86_64
 
-=== uname -r ===
-7.2.8-300.fc45.x86_64
+=== uname -r (verified boot 2026-10-10) ===
+7.2.9-300.fc45.x86_64
 
 === flatpak list --app --columns=application,version ===
 com.getpostman.Postman	12.30.4
@@ -47,3 +47,8 @@ org.vinegarhq.Sober	1.7.1
 === noctalia plugin git pins (not cloned) ===
 official-plugins https://github.com/noctalia-dev/official-plugins commit 2337829
 community-plugins https://github.com/noctalia-dev/community-plugins commit a1b7827
+
+=== added 2026-10-10 ===
+flameshot-14.0.0-1.fc45.x86_64
+nirinit 0.2.2 (local cargo build, not an rpm)
+niri-ror wrapper; upstream boomskats/niri-ror 60fbab4

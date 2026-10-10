@@ -1,0 +1,11 @@
+[Unit]
+Description=Prepare signed NVIDIA open modules before graphical login
+Wants=akmods.service
+After=akmods.service systemd-udev-trigger.service
+Before=display-manager.service nvidia-fallback.service nvidia-persistenced.service nvidia-powerd.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python3 -I /usr/local/libexec/nvidia-reliability/nvidia_ready.py boot
+RemainAfterExit=yes
+TimeoutStartSec=16min
