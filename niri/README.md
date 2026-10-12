@@ -29,7 +29,9 @@ The NVIDIA boot reliability fix was installed and reboot-tested on 2026-10-10. R
 | `home/.config/environment.d/99-ssh-auth-sock.conf` | `~/.config/environment.d/` | Points `SSH_AUTH_SOCK` at the keyring socket for the next login |
 | `home/.config/systemd/user/cx-knob-columns.service` | same | User service for that knob |
 | `home/.config/systemd/user/graphical-session.target.wants/cx-knob-columns.service` | same | Enables that service in the graphical session |
-| `home/.var/app/org.mozilla.firefox/.../user.js` | same | Middle-click autoscroll on. Not the rest of the Firefox profile |
+| `home/.var/app/org.mozilla.firefox/.../user.js` | same | Middle-click autoscroll on, and `widget.dmabuf.force-enabled` so Flatpak Firefox can screen-share on niri. Not the rest of the Firefox profile |
+| `home/.local/share/flatpak/overrides/org.mozilla.firefox` | same | Lets the Firefox Flatpak see PipeWire (`xdg-run/pipewire-0`) |
+| `home/.local/bin/niri-stack-keep-visible` | same | Win+, / Win+. consume or expel a window, then share column height so stacked windows stay on screen |
 | `home/.local/share/fonts/fantasque-sans-mono.regular.otf` | same | The regular face. Not a Nerd Font |
 | `home/.local/state/noctalia/settings.toml` | same | Bar, dock pins, panels, 12-hour clock, Wallhaven widget, niri ribbon, wallpaper |
 | `home/.local/share/noctalia/plugins/niri-ribbon/` | same | Noctalia 5 bar widget for columns scrolled off the ultrawide. The upstream QML ribbon does not load on this shell |
@@ -90,6 +92,16 @@ Fedora ships `gnome-keyring-secrets.desktop`, `gnome-keyring-pkcs11.desktop`, an
 Other `OnlyShowIn=GNOME` autostart entries are left skipped on purpose: Orca, localsearch, the disk-utility notifier, and the AT-SPI bus. The polkit agent is `OnlyShowIn=MATE`, so it is started from `spawn-at-startup` in the niri config instead.
 
 `SSH_AUTH_SOCK` is `${XDG_RUNTIME_DIR}/keyring/ssh`. `home/.config/environment.d/99-ssh-auth-sock.conf` sets it for the next login. `home/.zshrc` sets it for a terminal opened before that.
+
+## Screen sharing
+
+Chromium from RPM can share the screen on this niri + NVIDIA box. Flatpak Firefox 157 could not until three things were in place, then a reboot:
+
+1. Flatpak override so Firefox can see `xdg-run/pipewire-0` (and `pipewire-0-manager`).
+2. `widget.dmabuf.force-enabled` set to true in `user.js`. Firefox blocklists dmabuf on this NVIDIA driver and then only offers MemFd. niri 26.04 is dmabuf-only, so the share fails. Mozilla: [bug 1985338](https://bugzilla.mozilla.org/show_bug.cgi?id=1985338). niri: [issue 2301](https://github.com/niri-wm/niri/issues/2301).
+3. Do not set niri `force-pipewire-invalid-modifier` here. On the 4070 that path logs `error binding dmabuf` and the share dies.
+
+A full Firefox quit was not enough on its own. After a reboot, sharing worked.
 
 ## Restoring
 

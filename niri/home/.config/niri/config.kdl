@@ -126,8 +126,8 @@ binds {
     Mod+Shift+R hotkey-overlay-title=null { switch-preset-column-width-back; }
 
     Mod+C hotkey-overlay-title="Center the window" { center-column; }
-    Mod+Comma hotkey-overlay-title="Stack into the left column" { consume-or-expel-window-left; }
-    Mod+Period hotkey-overlay-title="Unstack the window" { expel-window-from-column; }
+    Mod+Comma hotkey-overlay-title="Split toward the left" { spawn "/home/som/.local/bin/niri-stack-keep-visible" "left"; }
+    Mod+Period hotkey-overlay-title="Split toward the right" { spawn "/home/som/.local/bin/niri-stack-keep-visible" "right"; }
     Mod+E hotkey-overlay-title="Reset window height" { reset-window-height; }
     Mod+Space hotkey-overlay-title="Float or tile" { toggle-window-floating; }
     Mod+F hotkey-overlay-title="Full width" { maximize-column; }
