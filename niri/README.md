@@ -37,7 +37,7 @@ The NVIDIA boot reliability fix was installed and reboot-tested on 2026-10-10. R
 | `home/.local/share/noctalia/plugins/niri-ribbon/` | same | Noctalia 5 bar widget for columns scrolled off the ultrawide. The upstream QML ribbon does not load on this shell |
 | `home/.config/nirinit/config.toml` | `~/.config/nirinit/` | Session restore. Skips Noctalia and Flameshot. Maps Flatpak and app launchers |
 | `home/.local/bin/niri-ror` | same | Wrapper for [niri-ror](https://github.com/boomskats/niri-ror) at `60fbab4`. The clone itself is not stored |
-| `home/.config/kitty/` | `~/.config/kitty/` | Fantasque Sans Mono 14, opacity 0.9, OneDark, splits, Ctrl+Shift+arrows move between panes |
+| `home/.config/kitty/` | `~/.config/kitty/` | Fantasque Sans Mono 14 for text, Nerd Font only for icons, opacity 0.9, OneDark, splits, Ctrl+Shift+arrows move between panes |
 | `home/.local/state/noctalia/state.toml` | same | Small Noctalia state |
 | `home/.local/state/noctalia/plugins/materialized/official/wallhaven/` | same | Installed Wallhaven plugin snapshot |
 | `home/Pictures/wallhaven-96j6px.jpg` | `~/Pictures/` | Wallpaper the bar and monitors point at |
