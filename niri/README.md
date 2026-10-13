@@ -77,7 +77,7 @@ Mod is Super. The Paneru fn key maps to Super.
 
 - Mod+D launcher, Mod+Return opens Kitty, Mod+Shift+Return focuses an open Kitty
 - Mod+B focuses or opens Firefox. Mod+Shift+C focuses or opens VS Code
-- Mod+Up/Down switch workspace. Mod+Page Up/Down do the same
+- Mod+Up/Down focus the stacked window above or below. Mod+Alt+Up/Down switch workspace. Mod+Page Up/Down do the same. Mod+Ctrl+Up/Down change window height
 - Mod+Shift+S region screenshot in Flameshot. Print takes the full screen
 - Mod+Left/Right focus columns. The keyboard knob does the same thing
 - Ctrl+Shift+D vertical Kitty split, Ctrl+Shift+E horizontal Kitty split. Ctrl+Shift+arrows move between those panes

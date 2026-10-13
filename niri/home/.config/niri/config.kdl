@@ -46,6 +46,7 @@ layout {
 
         width 1
     }
+    background-color "transparent"
 }
 
 spawn-at-startup "noctalia"
@@ -100,8 +101,8 @@ binds {
 
     Mod+Left hotkey-overlay-title="Focus column left" { focus-column-left; }
     Mod+Right hotkey-overlay-title="Focus column right" { focus-column-right; }
-    Mod+Up hotkey-overlay-title="Workspace up" { focus-workspace-up; }
-    Mod+Down hotkey-overlay-title="Workspace down" { focus-workspace-down; }
+    Mod+Up hotkey-overlay-title="Focus window up" { focus-window-up; }
+    Mod+Down hotkey-overlay-title="Focus window down" { focus-window-down; }
     Mod+Alt+Left hotkey-overlay-title="Focus first column" { focus-column-first; }
     Mod+Alt+Right hotkey-overlay-title="Focus last column" { focus-column-last; }
     Mod+Home hotkey-overlay-title=null { focus-column-first; }
@@ -111,8 +112,8 @@ binds {
     Mod+Shift+Right hotkey-overlay-title="Move window right" { move-column-right; }
     Mod+Shift+Up hotkey-overlay-title="Move window to workspace above" { move-column-to-workspace-up; }
     Mod+Shift+Down hotkey-overlay-title="Move window to workspace below" { move-column-to-workspace-down; }
-    Mod+Alt+Up hotkey-overlay-title="Move window up in the stack" { move-window-up; }
-    Mod+Alt+Down hotkey-overlay-title="Move window down in the stack" { move-window-down; }
+    Mod+Alt+Up hotkey-overlay-title="Workspace up" { focus-workspace-up; }
+    Mod+Alt+Down hotkey-overlay-title="Workspace down" { focus-workspace-down; }
     Mod+Alt+Shift+Left hotkey-overlay-title="Move window to the start" { move-column-to-first; }
     Mod+Alt+Shift+Right hotkey-overlay-title="Move window to the end" { move-column-to-last; }
 
@@ -172,9 +173,9 @@ binds {
     Mod+Ctrl+Shift+Right { move-column-to-workspace-down; }
     Mod+Ctrl+Shift+Left  { move-column-to-workspace-up; }
     Mod+WheelScrollDown cooldown-ms=150 { focus-workspace-down; }
-    Mod+WheelScrollUp   cooldown-ms=150 { focus-workspace-up; }
+    Mod+WheelScrollUp cooldown-ms=150 { focus-workspace-up; }
     Mod+Shift+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
-    Mod+Shift+WheelScrollUp   cooldown-ms=150 { move-column-to-workspace-up; }
+    Mod+Shift+WheelScrollUp cooldown-ms=150 { move-column-to-workspace-up; }
 
     XF86AudioRaiseVolume { spawn-sh "noctalia msg volume-up"; }
     XF86AudioLowerVolume { spawn-sh "noctalia msg volume-down"; }
